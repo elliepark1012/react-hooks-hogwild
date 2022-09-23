@@ -78,6 +78,13 @@ ul {
   margin: auto;
 }
 
+.image {
+  display: block;
+  margin: auto;
+  width: 100px;
+  height: 100px;
+}
+
 
 .pigTile {
   display: inline;
@@ -149,4 +156,8 @@ ul {
   to {
     transform: rotate(360deg);
   }
+}
+
+.hogTile {
+  display: flex;
 }
