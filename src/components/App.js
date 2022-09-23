@@ -1,16 +1,26 @@
 import React, { useState } from "react";
 import Nav from "./Nav";
 import Hog from "./Hog";
-import hogs from "../porkers_data";
+import hogsList from "../porkers_data";
 import Filter from "./Filter";
+
 function App() {
 
-	// const [hogs, setHogs] = useState([]);
-
+	const [hogs, setHogs] = useState(hogsList);
+	// 0. setup hogs state
+	// 1. have filter function affect the hogs state
+	// 2. Have hogs map only apply through filtered hogs !
+	const filterPigs = () => {
+		setHogs([
+			...hogs.filter((hog => hog.greased))
+		])
+	}
 
 	return (
 		<div className="App">
 			<Nav />
+			{/* They didn't say where to put the button */}
+			<button onClick={filterPigs}>Show Greased Pigs</button>
 			<div style={{display: 'flex'}}>
 				{
 				  hogs.map((hog) => {
