@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Nav from "./Nav";
 import Hog from "./Hog";
 import hogsList from "../porkers_data";
-import Filter from "./Filter";
 
 function App() {
 
@@ -15,12 +14,35 @@ function App() {
 			...hogs.filter((hog => hog.greased))
 		])
 	}
+	console.log(hogs)
+	// use the array sort function to sort by name
+	
+	// and set Hogs to be the sorted state!
+	const nameSortFunction = (a, b) => {
+		if (a.name < b.name) return -1;
+		if (a.name > b.name) return 1;
+		return 0
+	}
+	
+	const sortByName = () => {
+		const names = [...hogs.sort(nameSortFunction)]
+		console.log(names)
+	     setHogs(names)
+
+	}
+		
+		// hogs.sort(function (a, b) {
+		// 	let textA = hogs.name.toUpperCase();
+		// 	let textB = hogs.name.toUpperCase();	
+		// return (textA < textB) ? - 1 : (textA > textB) ? 1 : 0; 
+        //         return -1;})
+
 
 	return (
 		<div className="App">
 			<Nav />
 			{/* They didn't say where to put the button */}
-			<button onClick={filterPigs}>Show Greased Pigs</button>
+			
 			<div style={{display: 'flex'}}>
 				{
 				  hogs.map((hog) => {
@@ -29,8 +51,11 @@ function App() {
 					)
 				  })
 				}
+
 			</div>
-			{/* <Filter hogs={hogs}/> */}
+			<button onClick={filterPigs}>Show Greased Pigs</button>
+			<button onClick={sortByName}>A to Z</button>
+			
 
 		</div>
 	);
